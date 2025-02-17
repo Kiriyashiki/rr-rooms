@@ -40,6 +40,21 @@
             let RELOAD_TIMER = null;
             let cur_rooms = [];
 
+            // Source: https://github.com/patchzyy/WheelWizard
+            const ROOM_TYPES = {
+                "vs_10": "Retro VS",
+                "vs_11": "Retro TT",
+                "vs_12": "Retro 200cc",
+                "vs_20": "CT VS",
+                "vs_21": "CT TT",
+                "vs_22": "CT 200cc",
+                "vs_668": "CTGP-C",
+                "vs_69": "Insane Kart",
+                "vs_751": "Versus",
+                "vs_-1": "Regular",
+                "vs": "Regular"
+            };
+
             function _escape(str){
                 return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
             }
@@ -620,7 +635,15 @@
 
                     // Apply the room header text.
                     var skip_reset = false;
-                    room_header.innerHTML = `${room_type} ${room.rk? room.rk.toUpperCase() + " " : ""}Room <a href="?room=${room.id}" class="room-link">${room.id}</a> – Uptime: <span created="${room.created}"></span>\r\n${room_no_players} player${room_no_players == 1 ? "" : "s"} – <span class="${joinable_class}">${joinable}</span>`;
+
+                    var rk = room.rk;
+                    if (rk && rk in ROOM_TYPES){
+                        rk = `<span title="${rk}">${ROOM_TYPES[rk]}</span>`;
+                    } else if (rk) {
+                        rk = rk.toUpperCase();
+                    }
+
+                    room_header.innerHTML = `${room_type} ${rk? rk + " " : ""}Room <a href="?room=${room.id}" class="room-link">${room.id}</a> – Uptime: <span created="${room.created}"></span>\r\n${room_no_players} player${room_no_players == 1 ? "" : "s"} – <span class="${joinable_class}">${joinable}</span>`;
                     if (uptimes_timer){
                         skip_reset = true;
                     }
