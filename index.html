@@ -66,6 +66,18 @@
 
                 return filter_mii_name(_escape(name));
             }
+            
+            function char_code_is_wide(char_code){
+                if (char_code >= 0xF103 && char_code <= 0xF12F) {
+                    return true;
+                }
+
+                // …
+                if (char_code == 0x2026) {
+                    return true;
+                }
+                return false;
+            }
 
             function filter_mii_name(name){
                 // If a character is between 0xF103 and 0xF12F, place it within <span class="wide-char">
@@ -73,7 +85,7 @@
                 let special_char = false;
                 for (let i = 0; i < name.length; i++){
                     const char_code = name.charCodeAt(i);
-                    if (char_code >= 0xF103 && char_code <= 0xF12F){
+                    if (char_code_is_wide(char_code)){
                         if (!special_char){
                             new_name += "<span class=\"wide-char\">";
                             special_char = true;
