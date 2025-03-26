@@ -83,12 +83,17 @@ th, td {
     font-size: 2rem;
 }
 
-#top-container {
+#top-container, #not-found-container {
     display: none;
     font-weight: bold;
     font-size: 1.5rem;
     gap: 1rem;
     flex-wrap: wrap;
+}
+
+#not-found-container {
+    width: 100%;
+    color: red;
 }
 
 .top-stat {
@@ -104,7 +109,39 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    gap: 1rem;
+    justify-content: center;
+}
+
+#settings > * {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    margin-bottom: 0.4rem;
+}
+
+#history-container, #history-indicator {
+    width: 100%;
+}
+
+#history-indicator {
+    display: none;
+    background-color: rgb(228, 228, 228);
+}
+
+#history-input {
+    border: 1px solid rgb(139, 139, 139);
+    border-radius: 0.2rem;
+    padding: 0.1rem;
+    font-size: 1rem;
+}
+
+button {
+    font-size: 0.8rem;
+    border: 1px solid gray;
+    background-color: white;
+    cursor: pointer;
+    padding: 0.1rem 0.3rem 0.1rem 0.3rem;
+    margin: 0.2rem;
+    border-radius: 0.2rem;
 }
 
 .highlighted {
@@ -145,7 +182,7 @@ tbody > tr:first-child {
         font-size: 0.8rem;
     }
 
-    #top-container {
+    #top-container, #not-found-container {
         font-size: 0.8rem;
     }
 
