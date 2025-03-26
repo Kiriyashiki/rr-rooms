@@ -517,7 +517,8 @@
 
                 if (timestamp){
                     HISTORY_MODE = true;
-                    HISTORY_DATE = new Date(parseInt(timestamp) * 1000);
+                    let timezone_offset = new Date().getTimezoneOffset() * 60000;
+                    HISTORY_DATE = new Date(parseInt(timestamp) * 1000 - timezone_offset);
                     document.getElementById("history-input").value = HISTORY_DATE.toISOString().slice(0, 16);
                     change_history();
                     return;
