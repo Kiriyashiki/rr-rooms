@@ -620,6 +620,7 @@
                 rooms = filter_fc(rooms);
                 rooms = fix_split_rooms(rooms);
 
+                let rooms_count = 0;
 
                 for (const room of rooms) {
                     if (filter_room && room.id != filter_room){
@@ -629,7 +630,8 @@
                     if (!filter_room && !document.getElementById("private-checkbox").checked && room.type != "anybody"){
                         continue;
                     }
-
+                    
+                    rooms_count += 1;
                     room_not_found = false;
 
                     // Room Info
@@ -807,7 +809,7 @@
 
                 document.querySelector("#loading").style.display = "none";
                 if (!filter_room){
-                    document.querySelector("#no-rooms").textContent = rooms.length;
+                    document.querySelector("#no-rooms").textContent = rooms_count;
                     document.querySelector("#no-players").textContent = no_players;
 
                     document.querySelector("#top-container").style.display = "flex";
