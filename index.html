@@ -19,6 +19,10 @@
                 <label for="timeout-checkbox">Auto-refresh</label>
                 <input type="checkbox" id="timeout-checkbox" onchange="on_checkbox()" />
             </div>
+            <div id="private-container">
+                <label for="private-checkbox">Show Private rooms</label>
+                <input type="checkbox" id="private-checkbox" onchange="on_private_checkbox()" />
+            </div>
             <div id="fc-container">
                 <label for="fc-input">Highlight FC</label>
                 <input type="text" id="fc-input" placeholder="0000-0000-0000-0000" oninput="on_fc_change()" />
@@ -403,6 +407,12 @@
                 localStorage.setItem("auto-reload", document.getElementById("timeout-checkbox").checked);
             }
 
+            function on_private_checkbox() {
+                const checkbox = document.getElementById("private-checkbox");
+                localStorage.setItem("show-private", checkbox.checked);
+                reload_rooms();
+            }
+
             // Miis are stored as key "mii_{data}": "[image, datetime]"
             function remove_expired_mii_images(){
                 let remove_keys = [];
@@ -510,6 +520,13 @@
             async function on_load(){
                 document.getElementById("timeout-checkbox").checked = localStorage.getItem("auto-reload") == "true";
                 document.getElementById("fc-input").value = localStorage.getItem("highlight-fc") || "";
+                let priv = localStorage.getItem("show-private");
+                if (priv == null){
+                    priv = true;
+                } else {
+                    priv = priv == "true";
+                }
+                document.getElementById("private-checkbox").checked = priv;
 
                 const url = new URL(window.location.href);
                 const params = url.searchParams;
@@ -608,6 +625,11 @@
                     if (filter_room && room.id != filter_room){
                         continue;
                     }
+
+                    if (!filter_room && !document.getElementById("private-checkbox").checked && room.type != "anybody"){
+                        continue;
+                    }
+
                     room_not_found = false;
 
                     // Room Info
