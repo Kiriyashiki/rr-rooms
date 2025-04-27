@@ -173,6 +173,10 @@ button {
     color: brown;
 }
 
+.openhost {
+    text-decoration: underline;
+}
+
 tbody > tr:first-child {
     border-top: hidden;
 }

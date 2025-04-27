@@ -23,6 +23,10 @@
                 <label for="private-checkbox">Show Private rooms</label>
                 <input type="checkbox" id="private-checkbox" onchange="on_private_checkbox()" />
             </div>
+            <div id="openhost-container">
+                <label for="openhost-checkbox">Indicate OpenHost</label>
+                <input type="checkbox" id="openhost-checkbox" onchange="on_openhost_checkbox()" />
+            </div>
             <div id="fc-container">
                 <label for="fc-input">Highlight FC</label>
                 <input type="text" id="fc-input" placeholder="0000-0000-0000-0000" oninput="on_fc_change()" />
@@ -413,6 +417,23 @@
                 reload_rooms();
             }
 
+            function on_openhost_checkbox() {
+                const checkbox = document.getElementById("openhost-checkbox");
+                localStorage.setItem("openhost", checkbox.checked);
+                update_openhost_underline();
+            }
+
+            function update_openhost_underline() {
+                let openhost_status = document.getElementById("openhost-checkbox").checked;
+                document.querySelectorAll("td[openhost]").forEach((td) => {
+                    if (openhost_status) {
+                        td.classList.add("openhost");
+                    } else {
+                        td.classList.remove("openhost");
+                    }
+                });
+            }
+
             // Miis are stored as key "mii_{data}": "[image, datetime]"
             function remove_expired_mii_images(){
                 let remove_keys = [];
@@ -527,6 +548,14 @@
                     priv = priv == "true";
                 }
                 document.getElementById("private-checkbox").checked = priv;
+
+                let oh = localStorage.getItem("openhost");
+                if (oh == null){
+                    oh = true;
+                } else {
+                    oh = oh == "true";
+                }
+                document.getElementById("openhost-checkbox").checked = oh;
 
                 const url = new URL(window.location.href);
                 const params = url.searchParams;
@@ -765,6 +794,11 @@
                                 tr.classList.add("highlighted");
                             }
 
+                            if (player["openhost"] && player.openhost == "true") {
+                                td.setAttribute("openhost", "");
+                                td.title = "OpenHost enabled";
+                            }
+
                             tr.appendChild(td);
 
                             // // Connection fail
@@ -822,6 +856,8 @@
                 }
 
                 document.querySelector("#not-found-container").style.display = "none";
+
+                update_openhost_underline();
 
                 // document.querySelector(".room-header").style.borderTop = "hidden";
 
