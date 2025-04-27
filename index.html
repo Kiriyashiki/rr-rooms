@@ -798,7 +798,7 @@
                                 tr.classList.add("highlighted");
                             }
 
-                            if (player["openhost"] && player.openhost == "true") {
+                            if (player["openhost"] && player.openhost == "true" && cur_mii_idx == 0) {
                                 td.setAttribute("openhost", "");
                                 td.title = "OpenHost enabled";
                             }
