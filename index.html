@@ -598,6 +598,10 @@
 
                     checkbox.disabled = true;
                     history_indicator.style.display = "block";
+
+                    document.getElementById("tablebody").innerHTML = "";
+                    document.querySelector("#top-container").style.display = "none";
+                    document.querySelector("#loading").style.display = "block";
                 } else {
                     checkbox.disabled = false;
                     history_indicator.style.display = "none";
