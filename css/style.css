@@ -11,6 +11,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #181a1b;
+    color: #e8e6e3;
 }
 
 p {
@@ -22,12 +24,11 @@ table {
     white-space: pre;
     font-size: 1.2rem;
     border-collapse: collapse;
-    border: 1px solid black;
 }
 
 th, td {
     text-align: center;
-    border: 1px solid black;
+    border: 1px solid #9a9a9a;
     padding: 0 1rem;
     line-height: 1.6rem;
 }
@@ -43,10 +44,7 @@ th, td {
 .mii {
     height: 2rem;
     width: auto;
-    margin-top: -0.2rem;
-    margin-bottom: -0.3rem;
-    margin-left: -0.3rem;
-    margin-right: -0.3rem;
+    margin: -0.2rem -0.3rem -0.3rem;
 }
 
 .mii-td {
@@ -66,7 +64,7 @@ th, td {
 }
 
 .data-header {
-    background-color: lightgray;
+    background-color: #313131;
 }
 
 .conn-fail {
@@ -124,11 +122,11 @@ h1 {
 
 #history-indicator {
     display: none;
-    background-color: rgb(228, 228, 228);
+    background-color: rgb(44, 44, 44);
 }
 
 #history-input {
-    border: 1px solid rgb(139, 139, 139);
+    border: 1px solid rgb(93, 93, 93);
     border-radius: 0.2rem;
     padding: 0.1rem;
     font-size: 1rem;
@@ -137,7 +135,7 @@ h1 {
 button {
     font-size: 0.8rem;
     border: 1px solid gray;
-    background-color: white;
+    background-color: #e8e6e3;
     cursor: pointer;
     padding: 0.1rem 0.3rem 0.1rem 0.3rem;
     margin: 0.2rem;
@@ -145,15 +143,15 @@ button {
 }
 
 .highlighted {
-    background-color: rgb(255, 255, 132);
+    background-color: rgb(131, 131, 67);
 }
 
 #home-link {
-    color: black;
+    color: #e8e6e3;
 }
 
 .room-link {
-    color: black;
+    color: #e8e6e3;
 }
 
 .guest-td {
@@ -162,15 +160,59 @@ button {
 }
 
 .joinable {
-    color: green;
+    color: #00bd00;
 }
 
 .not-joinable {
-    color: darkred;
+    color: #ff2525;
 }
 
 .split-room {
-    color: brown;
+    color: #9d5c26;
+}
+
+.def {
+    background-color: #333333;
+}
+
+.reg {
+    background-color: #275041;
+}
+
+.rr-vs {
+    background-color: #493f24;
+}
+
+.rr-ct {
+    background-color: #263c4d;
+}
+
+.rr-ota {
+    background-color: #412020;
+}
+
+.rr-vs-200 {
+    background-color: #423616;
+}
+
+.rr-ct-200 {
+    background-color: #172e41;
+}
+
+.rr-ct-ota {
+    background-color: #481919;
+}
+
+.ikw {
+    background-color: #48293f;
+}
+
+.wtp {
+    background-color: #284126;
+}
+
+.opt {
+    background-color: #3e2846;
 }
 
 .openhost {
